@@ -1,0 +1,67 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer opened class="example-sidenav" mode="side">
+    <!-- Add a logo instead of the side menu text -->
+    <div class="logo-container">
+      <img src="assets/logo.jpeg" alt="Logo" class="menu-logo">
+    </div>
+  
+    <!-- Menu items with icons -->
+    <a class="menu-item" [routerLink]="['users']" routerLinkActive="router-link-active" *ngIf="!checkUsers">
+      <mat-icon>person</mat-icon>
+      Users
+    </a>
+  
+    <a class="menu-item" [routerLink]="['listing']" routerLinkActive="router-link-active">
+      <mat-icon>group</mat-icon>
+      Customer
+    </a>
+
+    <a class="menu-item" [routerLink]="['loan']" routerLinkActive="router-link-active">
+      <mat-icon>money</mat-icon>
+      Loan
+    </a>
+
+    <a class="menu-item" [routerLink]="['customer-check']" routerLinkActive="router-link-active">
+      <mat-icon>group</mat-icon>
+      Customer Check
+    </a>
+
+    <a class="menu-item" [routerLink]="['payment']" routerLinkActive="router-link-active">
+      <mat-icon>money</mat-icon>
+      Payment 
+    </a>
+  </mat-drawer>
+  <mat-toolbar class="toolbar blue-background">
+    <button
+      (click)="drawer.toggle()"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="my-app-title">My App</span>
+    <span class="example-spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="profileMenu" style="color:black" class="profile-button">
+      <mat-icon>account_circle</mat-icon>
+      {{userName}}
+    </button>
+    <mat-menu #profileMenu="matMenu">
+     
+      <button mat-menu-item (click)="changePassword()">
+        <mat-icon>User</mat-icon>
+        Change Password
+      </button>
+
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <div class="container-fluid content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
